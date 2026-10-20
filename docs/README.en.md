@@ -15,7 +15,9 @@ The workflow automatically uses the repository owner's username, GitHub display 
 - `github: "auto"`, `nickname: "auto"`: detect your identity. Explicit values override these defaults.
 - `projects.json`: `{"items": null, "limit": 4}` automatically selects four recently pushed repositories. An explicit `items` array controls order and text; `[]` hides all project cards. See `examples/projects.manual.json`.
 - The home card independently finds the latest default-branch commit, excluding the profile and current build repositories.
-- `illustration`: relative PNG/WebP path, or `null` to hide the character. Included backgrounds and UI labels remain.
+- `character`: choose one of [28 characters](CHARACTERS.md) by ID or name, e.g. `"hana"` or `"madoka"`. Use `"random"` to choose once per build (repeats are possible), while keeping random mode for subsequent scheduled runs. Refreshing the GitHub page does not reroll.
+- **Run workflow → character** can save a character or `random` to your config; `from-config` preserves your settings.
+- Optional `illustration`: relative PNG/WebP path, or `null` to hide the character. This overrides `character`; remove it to use the built-in roster. Explicit CLI/Actions selections remove this override. Included backgrounds and UI labels remain.
 - Skills, bio and greeting are editable sample copy, not inferred from your GitHub data. The UI is primarily Simplified Chinese.
 
 A same-name profile repository replaces its README with the generated image. Ordinary repositories retain this template's documentation and update only the marked preview. Add `--readme-mode preserve` to the workflow to keep a custom profile README; place one `<!-- SHINY:START -->` / `<!-- SHINY:END -->` pair where the image should appear. `PROFILE.md` is always generated as a standalone snippet.
@@ -29,6 +31,8 @@ python -m venv .venv
 # Activate .venv for your shell, then:
 python -m pip install -r requirements.txt
 python build.py --demo
+python build.py --demo --character madoka  # One-off override; config is unchanged
+python build.py --list-characters
 python -m http.server 4180 --bind 127.0.0.1
 ```
 

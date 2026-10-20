@@ -4,6 +4,43 @@ on:
   schedule:
     - cron: "17 16 * * *" # UTC 16:17 / 北京时间次日 00:17，避开整点高峰
   workflow_dispatch:
+    inputs:
+      character:
+        description: "选择人物并保存到配置；from-config 保留当前设置"
+        required: false
+        default: from-config
+        type: choice
+        options:
+          - from-config
+          - random
+          - 櫻木真乃
+          - 風野灯織
+          - 八宮めぐる
+          - 月岡恋鐘
+          - 幽谷霧子
+          - 三峰結華
+          - 田中摩美々
+          - 白瀬咲耶
+          - 小宮果穂
+          - 園田智代子
+          - 西城樹里
+          - 杜野凛世
+          - 有栖川夏葉
+          - 桑山千雪
+          - 大崎甘奈
+          - 大崎甜花
+          - 芹沢あさひ
+          - 黛冬優子
+          - 和泉愛依
+          - 浅倉透
+          - 樋口円香
+          - 福丸小糸
+          - 市川雛菜
+          - 七草にちか
+          - 緋田美琴
+          - 斑鳩ルカ
+          - 鈴木羽那
+          - 郁田はるき
   push:
     branches: [main]
     paths:
@@ -15,6 +52,7 @@ on:
       - 'assets/fonts/**'
       - 'assets/illustrations/**'
       - data/icons.json
+      - data/characters.json
       - 'tests/**'
       - .github/workflows/shiny-refresh.yml
 
@@ -41,6 +79,22 @@ jobs:
         run: |
           python -m pip install --quiet -r requirements.txt
           python -m unittest discover -s tests -v
+      - name: Save selected character
+        if: github.event_name == 'workflow_dispatch' && inputs.character != '' && inputs.character != 'from-config'
+        env:
+          CHARACTER_CHOICE: ${{ inputs.character }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import build
+          path = Path("config.json")
+          cfg = json.loads(path.read_text(encoding="utf-8"))
+          cfg = build.config_with_character(cfg, os.environ["CHARACTER_CHOICE"])
+          build.write_atomic(path, json.dumps(cfg, ensure_ascii=False, indent=2) + "\n")
+          print("Selected character:", cfg["character"])
+          PY
       - name: Verify built-in token on the template
         if: github.repository == 'Gu-Haojia/shinycolors-profile-template'
         env:
@@ -69,7 +123,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/shinycolors.svg README.md PROFILE.md
+          git add assets/shinycolors.svg README.md PROFILE.md config.json
           if [ -f data/stats.json ]; then git add data/stats.json; fi
           if git diff --staged --quiet; then
             echo "No generated changes."

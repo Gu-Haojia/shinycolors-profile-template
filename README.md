@@ -6,7 +6,7 @@
 
 闪耀色彩页游风格 · 一张连续滚动的动画 SVG · GitHub Actions 自动更新
 
-[使用模板](https://github.com/Gu-Haojia/shinycolors-profile-template/generate) · [部署指南](docs/DEPLOYMENT.md) · [配置说明](docs/CONFIGURATION.md) · [English](docs/README.en.md)
+[使用模板](https://github.com/Gu-Haojia/shinycolors-profile-template/generate) · [部署指南](docs/DEPLOYMENT.md) · [角色图库](docs/CHARACTERS.md) · [配置说明](docs/CONFIGURATION.md) · [English](docs/README.en.md)
 
 </div>
 
@@ -29,7 +29,7 @@
 
 <!-- SHINY:START -->
 <!-- ✦ 本文件由 build.py 生成：配置 config.json / projects.json；python3 build.py 或 --offline --watch ✦ -->
-<p align="center"><img src="assets/shinycolors.svg?v=1c21e0434fcb" width="100%" alt="Your Name 的闪耀色彩风格主页 · Lv.35 · 连续贡献 4 天"/></p>
+<p align="center"><img src="assets/shinycolors.svg?v=8b1ffa6f9697" width="100%" alt="Your Name 的闪耀色彩风格主页 · Lv.35 · 连续贡献 4 天"/></p>
 <!-- SHINY:END -->
 
 </details>
@@ -41,11 +41,14 @@
 | 用户名、显示名、介绍、技能 | `config.json` | 账号和显示名自动识别；其他内容为通用示例 |
 | 项目页列表 | `projects.json` | 选择最近推送的 4 个公开原创仓库；支持手动排序和文案 |
 | 首页最新项目 | 自动获取 | 按默认分支最新 commit 排序；独立于项目列表，排除主页和当前构建仓库 |
-| 人物立绘 | `config.json` → `illustration` | 内置羽那同人立绘，可换自己的透明 PNG/WebP 或设为 `null` |
+| 人物立绘 | `config.json` → `character` | [28 位角色](docs/CHARACTERS.md)，默认新版羽那；`random` 每次构建随机选择 |
+| 自定义立绘 | `config.json` → `illustration` | 可选透明 PNG/WebP 路径或 `null` 隐藏；优先于 `character` |
 | 背景与统计时区 | `config.json` | 内置场景；UTC+8 |
 | 自动更新频率 | `.github/workflows/shiny-refresh.yml` | 每日 16:17 UTC |
 
 代码和内容都在自己的仓库里，不依赖作者的服务。生成结果带内容哈希，用于减少 GitHub 图片缓存未刷新的情况。
+
+人物统一为职场 / Coding 主题，分别参考各角色官方原始形象生成。修改 `"character": "madoka"` 可固定圆香，修改为 `"character": "random"` 可在每次现有定时或手动构建时随机选择。也可直接在 **Run workflow → character** 下拉菜单选择，工作流会保存设置。GitHub 主页上的图片不会在访客刷新时重新抽取。
 
 ## 本地试用
 

@@ -17,7 +17,8 @@
 | `produce_label` | Produce 按钮上方短标题 |
 | `timezone_offset` | 显示时区相对 UTC 的小时偏移，-12～14，可用 5.5 等小数；不自动适应夏令时 |
 | `backgrounds.home` / `.produce` | 内置背景编号 `"001"`、`"003"` 或 `"035"` |
-| `illustration` | 相对仓库根目录的 PNG/WebP 文件路径；`null` 隐藏人物 |
+| `character` | [28 位内置角色](CHARACTERS.md)的 ID / 姓名，默认 `hana`；`random` 每次构建随机选择 |
+| `illustration` | 可选，相对仓库根目录的 PNG/WebP 路径；`null` 隐藏人物。存在时优先于 `character` |
 | `skills` | 最多 4 组技能，每组 `name`、`param`、`icons`，可选 `tags` |
 | `about_title` / `about` | 关于页标题和说明；方括号 `[文字]` 表示强调文字 |
 | `speaks` | 关于页底部语言文字，可留空 |
@@ -73,7 +74,11 @@
 
 ## 替换视觉素材
 
-立绘建议使用透明背景、2:3 画布，放进 `assets/illustrations/`，修改 `illustration` 指向新文件。构建会等比缩放、底部对齐到 1024×1536 的透明画布；当前场景构图针对桌前角色设计，其他姿势可能需要调整 `hana_coding()` 中的位置。
+选择内置角色只需设置 `"character": "hana"`、`"character": "樋口円香"` 等；完整 ID 和预览见[角色图库](CHARACTERS.md)。`"character": "random"` 在每次构建时从 28 位角色中等概率抽取一位，允许连续两次相同。随机结果内嵌到 SVG，配置保持 `random`，访问或刷新 GitHub 主页不会重新抽取，也不增加更新触发器。
+
+Actions → Shiny Refresh → Run workflow 的 `character` 菜单可保存固定角色或 `random`，选 `from-config` 保留原设置。明确选择时会移除旧的 `illustration` 覆盖项。
+
+自定义立绘建议使用透明背景、2:3 画布，放进 `assets/illustrations/`，添加 `illustration` 指向新文件。构建会等比缩放、底部对齐到 1024×1536 的透明画布；当前场景构图针对桌前角色设计，其他姿势可能需要调整 `character_artwork()` 中的位置。使用内置角色或随机模式前，删除已有的 `illustration` 字段；旧字段仍优先，便于已有配置继续使用。
 
 `illustration: null` 仅隐藏人物，场景和游戏图标仍然存在。背景与道具可替换 `assets/game/` 同名文件，尺寸变化时同步修改 `index.json`。`bg_001` 和 `bg_003` 的渲染优先使用对应 `_hd` 文件。字体文件与图标路径分别在 `assets/fonts/` 和 `data/icons.json`。
 
@@ -105,6 +110,9 @@ python build.py --demo                     # 离线虚构示例
 python build.py --username alice           # 真实数据；需环境变量 GITHUB_TOKEN
 python build.py --username alice --offline # 使用 alice 的缓存
 python build.py --demo --watch             # 监听配置和立绘修改
+python build.py --list-characters          # 查看 28 位角色与 random
+python build.py --demo --character madoka  # 单次试用；不修改 config.json
+python build.py --demo --character random  # 单次随机；watch 时只在文件变化后重新抽取
 python build.py --strict-refresh           # 抓取失败即退出，Actions 使用
 python build.py --readme-mode preserve     # 保留 README，仅更新 SHINY 标记区域
 python build.py --readme-mode profile      # 将 README 完整替换为生成的主页
