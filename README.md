@@ -29,10 +29,55 @@
 
 <!-- SHINY:START -->
 <!-- ✦ 本文件由 build.py 生成：配置 config.json / projects.json；python3 build.py 或 --offline --watch ✦ -->
-<p align="center"><img src="assets/shinycolors.svg?v=7a8330515176" width="100%" alt="Your Name 的闪耀色彩风格主页 · Lv.35 · 连续贡献 4 天"/></p>
+<p align="center"><img src="assets/shinycolors.svg?v=0eab7fc35ca6" width="100%" alt="Your Name 的闪耀色彩风格主页 · Lv.35 · 连续贡献 4 天"/></p>
 <!-- SHINY:END -->
 
 </details>
+
+## 28 位 Coding 伙伴
+
+固定角色或设为 `random`。完整大图、角色 ID 和选择说明见[角色图库](docs/CHARACTERS.md)。
+
+<!-- CHARACTERS:START -->
+<table>
+  <tr>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/mano-coding.webp?v=da5d737690b1" width="100" alt="櫻木真乃"><br><sub>櫻木真乃</sub></a><br><code>mano</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/hiori-coding.webp?v=48722258226a" width="100" alt="風野灯織"><br><sub>風野灯織</sub></a><br><code>hiori</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/meguru-coding.webp?v=0828ad926689" width="100" alt="八宮めぐる"><br><sub>八宮めぐる</sub></a><br><code>meguru</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/kogane-coding.webp?v=196982c4f5e2" width="100" alt="月岡恋鐘"><br><sub>月岡恋鐘</sub></a><br><code>kogane</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/kiriko-coding.webp?v=6eabfacb5ddb" width="100" alt="幽谷霧子"><br><sub>幽谷霧子</sub></a><br><code>kiriko</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/yuika-coding.webp?v=714a3d770f68" width="100" alt="三峰結華"><br><sub>三峰結華</sub></a><br><code>yuika</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/mamimi-coding.webp?v=4622dc8c65d9" width="100" alt="田中摩美々"><br><sub>田中摩美々</sub></a><br><code>mamimi</code></td>
+  </tr>
+  <tr>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/sakuya-coding.webp?v=3b45c5112552" width="100" alt="白瀬咲耶"><br><sub>白瀬咲耶</sub></a><br><code>sakuya</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/kaho-coding.webp?v=dceff91ff934" width="100" alt="小宮果穂"><br><sub>小宮果穂</sub></a><br><code>kaho</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/chiyoko-coding.webp?v=e40e1ee7dfcd" width="100" alt="園田智代子"><br><sub>園田智代子</sub></a><br><code>chiyoko</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/juri-coding.webp?v=b1ff5988cf52" width="100" alt="西城樹里"><br><sub>西城樹里</sub></a><br><code>juri</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/rinze-coding.webp?v=3081b878511d" width="100" alt="杜野凛世"><br><sub>杜野凛世</sub></a><br><code>rinze</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/natsuha-coding.webp?v=ae8a11afe5fc" width="100" alt="有栖川夏葉"><br><sub>有栖川夏葉</sub></a><br><code>natsuha</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/chiyuki-coding.webp?v=3ede5dc5e806" width="100" alt="桑山千雪"><br><sub>桑山千雪</sub></a><br><code>chiyuki</code></td>
+  </tr>
+  <tr>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/amana-coding.webp?v=85293fb7e241" width="100" alt="大崎甘奈"><br><sub>大崎甘奈</sub></a><br><code>amana</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/tenka-coding.webp?v=a283c01f5e9a" width="100" alt="大崎甜花"><br><sub>大崎甜花</sub></a><br><code>tenka</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/asahi-coding.webp?v=b4c43f5227e9" width="100" alt="芹沢あさひ"><br><sub>芹沢あさひ</sub></a><br><code>asahi</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/fuyuko-coding.webp?v=a3660206202f" width="100" alt="黛冬優子"><br><sub>黛冬優子</sub></a><br><code>fuyuko</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/mei-coding.webp?v=5c764e997d10" width="100" alt="和泉愛依"><br><sub>和泉愛依</sub></a><br><code>mei</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/toru-coding.webp?v=e4b5af331348" width="100" alt="浅倉透"><br><sub>浅倉透</sub></a><br><code>toru</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/madoka-coding.webp?v=f5e7b7029b87" width="100" alt="樋口円香"><br><sub>樋口円香</sub></a><br><code>madoka</code></td>
+  </tr>
+  <tr>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/koito-coding.webp?v=fb05f54bec84" width="100" alt="福丸小糸"><br><sub>福丸小糸</sub></a><br><code>koito</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/hinana-coding.webp?v=1a0fac2c1b8c" width="100" alt="市川雛菜"><br><sub>市川雛菜</sub></a><br><code>hinana</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/nichika-coding.webp?v=3dc0f0ec067d" width="100" alt="七草にちか"><br><sub>七草にちか</sub></a><br><code>nichika</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/mikoto-coding.webp?v=0a30c45b8a6e" width="100" alt="緋田美琴"><br><sub>緋田美琴</sub></a><br><code>mikoto</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/luca-coding.webp?v=8dcc9eb37772" width="100" alt="斑鳩ルカ"><br><sub>斑鳩ルカ</sub></a><br><code>luca</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/hana-coding.webp?v=0bc03c847511" width="100" alt="鈴木羽那"><br><sub>鈴木羽那</sub></a><br><code>hana</code></td>
+    <td align="center" width="14%"><a href="docs/CHARACTERS.md"><img src="assets/illustrations/haruki-coding.webp?v=5c3127d8cde6" width="100" alt="郁田はるき"><br><sub>郁田はるき</sub></a><br><code>haruki</code></td>
+  </tr>
+</table>
+<!-- CHARACTERS:END -->
 
 ## 你可以改什么
 
@@ -41,7 +86,7 @@
 | 用户名、显示名、介绍、技能 | `config.json` | 账号和显示名自动识别；其他内容为通用示例 |
 | 项目页列表 | `projects.json` | 选择最近推送的 4 个公开原创仓库；支持手动排序和文案 |
 | 首页最新项目 | 自动获取 | 按默认分支最新 commit 排序；独立于项目列表，排除主页和当前构建仓库 |
-| 人物立绘 | `config.json` → `character` | [28 位角色](docs/CHARACTERS.md)，默认新版羽那；`random` 每次构建随机选择 |
+| 人物立绘 | `config.json` → `character` | [28 位角色](docs/CHARACTERS.md)，默认羽那；`random` 每次构建随机选择 |
 | 自定义立绘 | `config.json` → `illustration` | 可选透明 PNG/WebP 路径或 `null` 隐藏；优先于 `character` |
 | 背景与统计时区 | `config.json` | 内置场景；UTC+8 |
 | 自动更新频率 | `.github/workflows/shiny-refresh.yml` | 每日 16:17 UTC |

@@ -36,19 +36,19 @@ class CharacterTests(unittest.TestCase):
             with self.subTest(value=value), self.assertRaises(ValueError):
                 build.config_with_character({}, value)
 
-    def test_explicit_selection_overrides_legacy_path_without_mutating_input(self):
+    def test_explicit_selection_overrides_custom_path_without_mutating_input(self):
         cfg = {"character": "hana", "illustration": None, "nickname": "Alice"}
         selected = build.config_with_character(cfg, "樋口 円香")
         self.assertEqual(selected, {"character": "madoka", "nickname": "Alice"})
         self.assertIn("illustration", cfg)
         self.assertEqual(build.illustration_path(selected).name, "madoka-coding.webp")
 
-    def test_custom_hidden_and_old_hana_remain_available(self):
+    def test_custom_and_hidden_options_remain_available(self):
         self.assertIsNone(build.illustration_path({"character": "madoka", "illustration": None}))
-        self.assertEqual(build.illustration_path({"character": "hana"}).name, "hana-coding-v2.webp")
+        self.assertEqual(build.illustration_path({"character": "hana"}).name, "hana-coding.webp")
         self.assertEqual(build.illustration_path({
-            "character": "madoka", "illustration": "assets/illustrations/hana-coding.webp"
-        }).name, "hana-coding.webp")
+            "character": "hana", "illustration": "assets/illustrations/madoka-coding.webp"
+        }).name, "madoka-coding.webp")
         with self.assertRaisesRegex(ValueError, "立绘不存在"):
             build.illustration_path({"illustration": "missing.png"})
 
@@ -103,6 +103,18 @@ class CharacterTests(unittest.TestCase):
         gallery = (build.ROOT / "docs/gallery.html").read_text()
         embedded = json.loads(gallery.split("const roster=", 1)[1].split(";\nconst $", 1)[0])
         self.assertEqual(embedded, build.character_catalog())
+
+    def test_readme_thumbnails_match_exactly_the_shipped_roster(self):
+        rows = build.character_catalog()
+        expected = {row["file"] for row in rows}
+        shipped = {str(path.relative_to(build.ROOT)) for path in
+                   (build.ROOT / "assets/illustrations").glob("*.webp")}
+        self.assertEqual(shipped, expected)
+        readme = (build.ROOT / "README.md").read_text()
+        grid = readme.split("<!-- CHARACTERS:START -->", 1)[1].split("<!-- CHARACTERS:END -->", 1)[0]
+        sources = re.findall(r'<img src="([^"?]+)(?:\?[^"]+)?"', grid)
+        self.assertEqual(len(sources), 28)
+        self.assertEqual(set(sources), expected)
 
 
 if __name__ == "__main__":

@@ -4,9 +4,8 @@
 
 - 文件、姓名与官方参考 URL：[角色清单](../../data/characters.json)。
 - 每张完整提示词与生成方式：[生成记录](../../docs/character-prompts.json)。
+- `hana-coding.webp` 为本批生成的鈴木羽那，与其他 27 位使用相同选择逻辑。
 - 规格：1024×1536，透明 RGBA PNG 无损导出为 WebP，保留 alpha；没有额外后期重绘。
-- `hana-coding-v2.webp` 是本批重新生成的羽那，`character: "hana"` 使用此版本。
-- `hana-coding.webp` 保留此前经过头发清理的旧版羽那；添加 `"illustration": "assets/illustrations/hana-coding.webp"` 可继续使用。
 
 原始角色相关权利归原权利人所有。本素材不在生成器代码的 MIT 授权范围内；详见 [第三方声明](../../THIRD_PARTY_NOTICES.md)。
 

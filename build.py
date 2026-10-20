@@ -421,7 +421,7 @@ def selected_character(value):
 
 
 def config_with_character(cfg, value):
-    """A deliberate selection replaces any legacy/custom illustration override."""
+    """An explicit selection replaces any custom illustration override."""
     result = dict(cfg)
     result["character"] = ("random" if isinstance(value, str) and value.strip().casefold() == "random"
                            else selected_character(value)["id"])
@@ -437,7 +437,7 @@ def resolve_character_choice(cfg):
 
 
 def illustration_path(cfg):
-    # Existing custom illustrations (including null = hidden) keep precedence.
+    # Custom illustrations (including null = hidden) take precedence.
     if "illustration" in cfg:
         path = cfg["illustration"]
         if path is None:

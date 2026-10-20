@@ -76,9 +76,9 @@
 
 选择内置角色只需设置 `"character": "hana"`、`"character": "樋口円香"` 等；完整 ID 和预览见[角色图库](CHARACTERS.md)。`"character": "random"` 在每次构建时从 28 位角色中等概率抽取一位，允许连续两次相同。随机结果内嵌到 SVG，配置保持 `random`，访问或刷新 GitHub 主页不会重新抽取，也不增加更新触发器。
 
-Actions → Shiny Refresh → Run workflow 的 `character` 菜单可保存固定角色或 `random`，选 `from-config` 保留原设置。明确选择时会移除旧的 `illustration` 覆盖项。
+Actions → Shiny Refresh → Run workflow 的 `character` 菜单可保存固定角色或 `random`，选 `from-config` 保留原设置。明确选择时会移除自定义 `illustration` 覆盖项。
 
-自定义立绘建议使用透明背景、2:3 画布，放进 `assets/illustrations/`，添加 `illustration` 指向新文件。构建会等比缩放、底部对齐到 1024×1536 的透明画布；当前场景构图针对桌前角色设计，其他姿势可能需要调整 `character_artwork()` 中的位置。使用内置角色或随机模式前，删除已有的 `illustration` 字段；旧字段仍优先，便于已有配置继续使用。
+自定义立绘建议使用透明背景、2:3 画布，放进 `assets/illustrations/`，添加 `illustration` 指向新文件。构建会等比缩放、底部对齐到 1024×1536 的透明画布；当前场景构图针对桌前角色设计，其他姿势可能需要调整 `character_artwork()` 中的位置。使用内置角色或随机模式前，删除已有的 `illustration` 字段；自定义素材字段优先。
 
 `illustration: null` 仅隐藏人物，场景和游戏图标仍然存在。背景与道具可替换 `assets/game/` 同名文件，尺寸变化时同步修改 `index.json`。`bg_001` 和 `bg_003` 的渲染优先使用对应 `_hd` 文件。字体文件与图标路径分别在 `assets/fonts/` 和 `data/icons.json`。
 

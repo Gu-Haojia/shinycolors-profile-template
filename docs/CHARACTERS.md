@@ -1,6 +1,6 @@
 # 28 位 Coding 角色图库
 
-统一职场 / Coding 主题，每位从对应官方原始形象独立生成，透明背景。默认 `hana` 是本批新版羽那。
+统一职场 / Coding 主题，每位从对应官方原始形象独立生成，透明背景。默认角色为 `hana`（鈴木羽那）。
 
 ## 选择方式
 
@@ -16,7 +16,6 @@
 - **GitHub 操作**：Actions → Shiny Refresh → Run workflow → character，选择角色名或 `random`。工作流会保存配置；`from-config` 保留当前设置。
 - **本地试用**：`python build.py --demo --character madoka` 或 `--character random`，仅覆盖本次构建，不修改配置。
 - **本地交互图库**：启动 `python -m http.server 4180 --bind 127.0.0.1`，打开 `http://127.0.0.1:4180/docs/gallery.html`，可预览、筛选和复制配置。
-- **旧版羽那**：添加 `"illustration": "assets/illustrations/hana-coding.webp"`。新版文件为 `hana-coding-v2.webp`，旧图保留。
 
 以下预览均为 AI 同人立绘，非官方服装或原图。[素材来源](../assets/illustrations/SOURCES.md) · [完整提示词](character-prompts.json)
 
@@ -96,6 +95,6 @@
 
 | 斑鳩ルカ | 鈴木羽那 | 郁田はるき |
 | --- | --- | --- |
-| <img src="../assets/illustrations/luca-coding.webp" width="220" alt="斑鳩ルカ Coding 立绘"> | <img src="../assets/illustrations/hana-coding-v2.webp" width="220" alt="鈴木羽那 Coding 立绘"> | <img src="../assets/illustrations/haruki-coding.webp" width="220" alt="郁田はるき Coding 立绘"> |
+| <img src="../assets/illustrations/luca-coding.webp" width="220" alt="斑鳩ルカ Coding 立绘"> | <img src="../assets/illustrations/hana-coding.webp" width="220" alt="鈴木羽那 Coding 立绘"> | <img src="../assets/illustrations/haruki-coding.webp" width="220" alt="郁田はるき Coding 立绘"> |
 | `luca` | `hana` | `haruki` |
 
