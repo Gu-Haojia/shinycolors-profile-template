@@ -1793,7 +1793,8 @@ def footer(y, d):
     bw, bh = 720, 86
     gx = (W - (52 + bw)) / 2
     bx = gx + 52  # 原图里条从 x=52 开始
-    lines = ["制作人，今天也辛苦了！", f"数据每天自动更新 · 最后更新 {d['date']}"]
+    update_line = f"数据每天自动更新 · 最后更新 {d['date']}" if d["date"] else "模板演示 · 最后更新"
+    lines = ["制作人，今天也辛苦了！", update_line]
     DEFS["hzFade"] = (f'<mask id="hzFade"><rect x="{n(gx)}" y="{y}" width="108" height="108" '
                       f'fill="{lg([(0, "#fff"), (.86, "#fff"), (1, "#000")], 0, 0, 1, 0)}"/></mask>')
     tx = gx + 126
@@ -1967,6 +1968,8 @@ def build_once(offline=False, *, demo=False, username=None, readme_mode="auto", 
     if not cfg.get("nickname") or cfg["nickname"] == "auto":
         cfg["nickname"] = st.get("profile_name") or cfg["github"]
     d = derive(cfg, st)
+    if demo:
+        d["date"] = ""  # 虚构示例没有真实的数据刷新日期。
     ASSETS.mkdir(exist_ok=True)
     svg = render(cfg, st, d)
     profile = readme(cfg, d, hashlib.sha256(svg.encode()).hexdigest()[:12])

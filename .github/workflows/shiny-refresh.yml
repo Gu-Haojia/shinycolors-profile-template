@@ -65,6 +65,8 @@ concurrency:
 
 jobs:
   refresh:
+    # 上游模板只在源码变更或手动运行时更新；复用仓库保留每日刷新。
+    if: ${{ github.event_name != 'schedule' || github.repository != 'Gu-Haojia/shinycolors-profile-template' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:

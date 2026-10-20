@@ -18,7 +18,7 @@
 2. 打开新仓库的 **Actions → Shiny Refresh → Run workflow**。如显示启用 Actions 的提示，先启用。等待运行成功。
 3. 打开自己的 GitHub 个人页。默认自动识别账号、显示名、头像和项目；需要个性化时只改 [`config.json`](config.json) 与 [`projects.json`](projects.json)。
 
-**不需要自己创建 Token。** 工作流使用 GitHub 自动提供的 `GITHUB_TOKEN`。默认每日北京时间 **00:17** 更新，也会在修改配置和源码后更新；其他项目的新提交在下一次更新时展示。
+**不需要自己创建 Token。** 工作流使用 GitHub 自动提供的 `GITHUB_TOKEN`。从模板创建的仓库默认每日北京时间 **00:17** 更新，也会在修改配置和源码后更新；其他项目的新提交在下一次更新时展示。上游模板仓库跳过每日构建，只在源码变更或手动运行时刷新演示图，演示图底部的更新时间留空。
 
 ## 示例预览
 
@@ -29,7 +29,7 @@
 
 <!-- SHINY:START -->
 <!-- ✦ 本文件由 build.py 生成：配置 config.json / projects.json；python3 build.py 或 --offline --watch ✦ -->
-<p align="center"><img src="assets/shinycolors.svg?v=ac464667a42d" width="100%" alt="Your Name 的闪耀色彩风格主页 · Lv.35 · 连续贡献 4 天"/></p>
+<p align="center"><img src="assets/shinycolors.svg?v=3453f30aafcb" width="100%" alt="Your Name 的闪耀色彩风格主页 · Lv.35 · 连续贡献 4 天"/></p>
 <!-- SHINY:END -->
 
 </details>

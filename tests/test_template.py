@@ -99,6 +99,13 @@ class AutoProjectTests(unittest.TestCase):
 
 
 class DemoTests(unittest.TestCase):
+    def test_demo_footer_leaves_update_time_blank_and_live_footer_keeps_it(self):
+        demo_footer, _ = build.footer(0, {"date": ""})
+        self.assertIn("模板演示 · 最后更新", demo_footer)
+        self.assertNotIn("数据每天自动更新", demo_footer)
+        live_footer, _ = build.footer(0, {"date": "2026/10/20"})
+        self.assertIn("数据每天自动更新 · 最后更新 2026/10/20", live_footer)
+
     def test_demo_build_is_offline_does_not_write_cache_and_retains_template_docs(self):
         cfg = copy.deepcopy(build.load_config())
         with tempfile.TemporaryDirectory() as tmp:
@@ -109,8 +116,9 @@ class DemoTests(unittest.TestCase):
                  patch.object(build, "CACHE", root / "data/stats.json"), \
                  patch.object(build, "load_config", return_value=cfg), \
                  patch.object(build, "load_stats", side_effect=AssertionError("demo fetched data")), \
-                 patch.object(build, "render", return_value="<svg/>"), patch("builtins.print"):
+                 patch.object(build, "render", return_value="<svg/>") as render, patch("builtins.print"):
                 build.build_once(demo=True, readme_mode="preserve")
+            self.assertEqual(render.call_args.args[2]["date"], "")
             self.assertFalse((root / "data/stats.json").exists())
             self.assertIn("# Guide", (root / "README.md").read_text())
             self.assertIn("Your Name", (root / "PROFILE.md").read_text())

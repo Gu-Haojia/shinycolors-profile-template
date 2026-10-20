@@ -68,6 +68,8 @@ python build.py --username YOUR_USERNAME --offline --watch
 
 工作流现有三种入口：每日定时、手动运行、配置/源码推送。默认 `17 16 * * *` 是 UTC 16:17，也就是北京时间次日 00:17；`timezone_offset` 只控制显示与统计分组，不改变 cron。
 
+上游 `Gu-Haojia/shinycolors-profile-template` 的定时事件会跳过整个构建任务，不运行测试、抓取或提交，也不占用 runner；Actions 中可能仍显示已跳过的记录。上游的手动运行和配置/源码推送正常执行。从模板创建的其他仓库仍每日更新，无需修改条件。`--demo` 演示图底部的更新时间留空，不显示“数据每天自动更新”；真实个人主页继续显示实际更新日期。
+
 其他仓库的提交不会额外触发更新，会在下一次运行时读取默认分支最新提交。修改 `projects.json` 会触发构建；如果改了 `projects_file` 文件名或把自定义立绘放在 `assets/illustrations/` 之外，也要把新路径加进工作流 `push.paths`，或手动运行。
 
 Actions 定时运行可能延迟。GitHub 可能在公开仓库长期无活动时停用定时工作流，届时进入 Actions 重新启用。详情见 [GitHub schedule 文档](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)。
