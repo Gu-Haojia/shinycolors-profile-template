@@ -1,0 +1,12 @@
+{
+  "items": [
+    {
+      "repo": "your-repository",
+      "title": "我的项目",
+      "description": null,
+      "language": null,
+      "color": "blue",
+      "show_on_projects": true
+    }
+  ]
+}

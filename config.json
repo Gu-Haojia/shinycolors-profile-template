@@ -1,0 +1,89 @@
+{
+  "github": "auto",
+  "nickname": "auto",
+  "card_title": "闪耀编码者",
+  "tags": [
+    "开源",
+    "创作",
+    "探索"
+  ],
+  "greeting": [
+    "把喜欢的事，",
+    "一点一点变成作品。"
+  ],
+  "tagline": [
+    "Code.",
+    "Create.",
+    "Cherish."
+  ],
+  "produce_label": "个人创作 · 作品",
+  "timezone_offset": 8,
+  "backgrounds": {
+    "home": "003",
+    "produce": "001"
+  },
+  "languages": {
+    "exclude": [
+      "Jupyter Notebook"
+    ],
+    "size_weight": 0.5,
+    "count_weight": 0.5
+  },
+  "skills": [
+    {
+      "name": "日常开发",
+      "param": "Vo",
+      "icons": [
+        "python",
+        "git"
+      ]
+    },
+    {
+      "name": "网页与界面",
+      "param": "Da",
+      "icons": [
+        "javascript",
+        "html5",
+        "css3"
+      ]
+    },
+    {
+      "name": "数据与实验",
+      "param": "Vi",
+      "icons": [
+        "jupyter"
+      ],
+      "tags": [
+        "Learning"
+      ]
+    },
+    {
+      "name": "工具与部署",
+      "param": "Me",
+      "icons": [
+        "docker"
+      ],
+      "tags": [
+        "Automation"
+      ]
+    }
+  ],
+  "about_title": "用代码，创造[闪耀]的每一天",
+  "about": [
+    {
+      "icon": "heart-fill",
+      "text": "把[喜欢的事]，一点一点变成作品。"
+    },
+    {
+      "icon": "python",
+      "text": "热爱[开源]，也喜欢做有趣的小实验。"
+    },
+    {
+      "icon": "repo",
+      "text": "在这里记录学习、创作和[每一天的成长]。"
+    }
+  ],
+  "speaks": "中文 · English",
+  "projects_file": "projects.json",
+  "illustration": "assets/illustrations/hana-coding.webp"
+}

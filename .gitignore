@@ -1,0 +1,7 @@
+preview.html
+_inspect.html
+.claude/
+__pycache__/
+.DS_Store
+*.tmp
+.venv/
