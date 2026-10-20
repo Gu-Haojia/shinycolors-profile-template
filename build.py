@@ -861,18 +861,6 @@ def fetch(login, token, timezone_offset=8):
           "stars": sum(r["stargazers_count"] for r in own), "last_push": max(pushes, default=None),
           "repo_meta": {r["name"]: [r["stargazers_count"], r["language"], r["description"] or "", r["pushed_at"]]
                         for r in own if r["name"].lower() != login.lower()}}
-    # 「正在培育」：最近一次推送提交的仓库（公开事件，只算自己的非 fork 仓库，跳过主页仓库），每次构建都重新取
-    names = {r["name"].lower(): r["name"] for r in own if r["name"].lower() != login.lower()}
-    try:
-        ev = api(f"https://api.github.com/users/{login}/events/public?per_page=100", token)
-        pushes = [(x["created_at"], x["repo"]["name"].split("/", 1)[1]) for x in ev
-                  if x.get("type") == "PushEvent" and x["repo"]["name"].split("/", 1)[0].lower() == login.lower()
-                  and x["repo"]["name"].split("/", 1)[1].lower() in names]
-        if pushes:
-            at, repo = max(pushes)
-            st["last_commit"] = {"repo": names[repo.lower()], "at": at}
-    except Exception as e:  # noqa: BLE001
-        print("  ! 最近提交读取失败：", e)
     langs = {}
     st['repo_commits'] = {}
     if token:
@@ -962,7 +950,7 @@ def load_stats(cfg, offline, strict=False):
     keep = {"followers", "repos", "created", "stars", "last_push", "commits", "contrib_year", "contrib_all",
             "contrib_rolling_year", "contribution_year",
             "prs", "issues", "contributed", "days", "langs_source", "langs", "avatar", "repo_meta",
-            "last_commit", "repo_commits", "github", "profile_name"}
+            "repo_commits", "github", "profile_name"}
     st = {k: v for k, v in fresh.items() if k in keep}
     CACHE.parent.mkdir(exist_ok=True)
     write_atomic(CACHE, json.dumps(st, ensure_ascii=False, indent=1))
@@ -1162,17 +1150,11 @@ def derive(cfg, st):
                           'commit_sha': commit['sha'], 'commit_message': ' '.join((commit.get('message') or '').split()),
                           'commit_url': commit.get('url') or '', 'commit_at': commit['at'],
                           'commit_time': f"{ago(commit['at'])} {at:%H:%M}"}
-    # 「正在培育」：最近一次提交的仓库（取不到推送事件时，退回最近推送的仓库）
-    lc = st.get("last_commit") or {}
-    if lc.get("repo") in meta:
-        act_name, act_at = lc["repo"], lc["at"]
-    else:
-        act_name, act_at = max(((k, v[3]) for k, v in meta.items()), key=lambda kv: kv[1] or "", default=(None, None))
+    # 与首页共用同一条默认分支提交；旧推送事件和 pushed_at 不参与选择。
     active = None
-    if act_name:
-        t_ = dt.datetime.fromisoformat(act_at.replace("Z", "+00:00")).astimezone(tz) if act_at else None
-        active = {"name": act_name, "stars": meta[act_name][0], "lang": meta[act_name][1], "ago": ago(act_at),
-                  "md": f"{t_.month}/{t_.day}" if t_ else ""}
+    if latest_project:
+        active = {**latest_project, "ago": ago(latest_project["commit_at"]),
+                  "md": f"{at.month}/{at.day}"}
 
     vals30 = [k for _d, k in d30]
     return {
@@ -1524,7 +1506,7 @@ def trend_tablet(d, x, y):
 
 
 def producing_bar(x, y, h, d, right=False):
-    """培育页顶栏：正在培育的项目（最近一次提交的仓库）+ 最近提交时间，照游戏表头样式（白底深框 + 左上深色页签）。"""
+    """培育页顶栏：正在培育的项目（与首页相同的默认分支最新提交）+ 最近提交时间，照游戏表头样式（白底深框 + 左上深色页签）。"""
     a = d.get("active")
     if not a:
         return ""
@@ -1566,7 +1548,7 @@ def produce(y, cfg, st, d):
         o.append(sparkle(sx, y+sy, sr, "#FFF8DC", MOTION["ambient"], phase))
     o.append(character_artwork(y, cfg) + gimg("desk", 0, y + 543, W, 97) + "</g>")
 
-    # 顶部：标题 + 「正在培育」信息条（最近一次推送的仓库：名字 / 简介 / 最近更新）
+    # 顶部：标题 + 「正在培育」信息条（首页最新项目：名字 / Star / 提交日期）
     o.append(header(y + 8, "培育"))
     o.append(producing_bar(0, y + 10, 64, d, right=True))
 

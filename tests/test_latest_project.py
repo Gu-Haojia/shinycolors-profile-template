@@ -45,6 +45,33 @@ class LatestProjectTests(unittest.TestCase):
         updated['repo_commits'] = {}
         self.assertIsNone(build.derive(self.cfg, updated)['latest_project'])
 
+    def test_producing_matches_home_despite_stale_events_and_different_push_times(self):
+        self.stats['last_commit'] = {'repo': 'Older', 'at': '2026-10-22T00:00:00Z'}
+        self.stats['repo_commits']['Newest']['at'] = '2026-10-19T18:00:00Z'
+        self.cfg['timezone_offset'] = 8
+        self.cfg['projects']['items'] = [{'repo': 'Older', 'title': '手写展示名'}]
+        d = build.derive(self.cfg, self.stats)
+        self.assertEqual(d['active']['name'], 'Newest')
+        self.assertEqual(d['active']['commit_at'], d['latest_project']['commit_at'])
+        self.assertEqual(d['active']['md'], '10/20')
+        self.assertTrue(d['latest_project']['commit_time'].startswith(d['active']['ago'] + ' '))
+        self.assertEqual((d['active']['stars'], d['active']['lang']), (2, 'Python'))
+        bar = build.producing_bar(0, 0, 64, d)
+        self.assertIn('Newest', bar)
+        self.assertNotIn('Older', bar)
+        self.assertIn('最近提交 · 10/20', bar)
+
+    def test_producing_hides_without_eligible_commits_even_if_push_data_exists(self):
+        self.stats['last_commit'] = {'repo': 'Older', 'at': '2026-10-22T00:00:00Z'}
+        profile_commit = self.stats['repo_commits']['example']
+        for commits in ({}, {'example': profile_commit}):
+            with self.subTest(commits=commits):
+                self.stats['repo_commits'] = commits
+                d = build.derive(self.cfg, self.stats)
+                self.assertIsNone(d['latest_project'])
+                self.assertIsNone(d['active'])
+                self.assertEqual(build.producing_bar(0, 0, 64, d), '')
+
     def test_home_shows_commit_time_without_summary_or_sha(self):
         d = build.derive(self.cfg, self.stats)
         d['latest_project']['fresh'] = True
@@ -114,10 +141,11 @@ class CommitFetchTests(unittest.TestCase):
                                    'pageInfo': {'hasNextPage': False, 'endCursor': None}}}
         year = build.dt.datetime.now(build.dt.timezone(build.dt.timedelta(hours=8))).year
         annual = {f'y{year}': {'contributionCalendar': {'totalContributions': 0}}}
-        with patch.object(build, 'api', side_effect=api), patch.object(build, 'gql', side_effect=[first, annual, second]) as gql, \
+        with patch.object(build, 'api', side_effect=api) as rest_api, patch.object(build, 'gql', side_effect=[first, annual, second]) as gql, \
              patch.object(build.urllib.request, 'urlopen', return_value=io.BytesIO(b'\x89PNG\r\n\x1a\n')):
             stats = build.fetch('Example', 'test-token')
         self.assertEqual(set(stats['repo_commits']), {'Alpha', 'Beta'})
+        self.assertFalse(any('/events/' in call.args[0] for call in rest_api.call_args_list))
         self.assertIn('after:"next-page"', gql.call_args_list[2].args[0])
         self.assertEqual(build.derive({'github': 'Example', 'projects': {'items': []}}, stats)['latest_project']['repo'], 'Beta')
 
